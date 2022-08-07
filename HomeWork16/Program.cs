@@ -1,11 +1,18 @@
 ﻿using HomeWork16;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.Json;
+using System.Xml.Serialization;
 
 Inventory inventory = new();
-inventory.AddNewProduct(new ProductClass(3, 3, "hello"));
-inventory.AddNewProduct(new ProductClass(3, 3, "Hello2"));
-inventory.ChangeCountProduct("hello", 99);
-Console.WriteLine($"сумма цен продукта {inventory[0]} - {inventory.SumProductPrices(inventory[0])}");
-foreach (var item in Log.LogInfo)
+
+using (FileStream fs = new FileStream("inventory.json", FileMode.OpenOrCreate))
+{
+    Console.WriteLine("Download from JSON");
+    inventory = await JsonSerializer.DeserializeAsync<Inventory>(fs);
+}
+Console.WriteLine("-=-=-=-=-=-=-=-=-");
+foreach (var item in inventory.Products)
 {
     Console.WriteLine(item);
 }
