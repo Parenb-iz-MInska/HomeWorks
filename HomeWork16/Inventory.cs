@@ -8,7 +8,7 @@ namespace HomeWork16
     [Serializable]
     public class Inventory
     {
-
+        [field : NonSerialized]
         public event Action<string> LogAction;
         public List<ProductClass> Products { get; set; } = new();
         public int Length
