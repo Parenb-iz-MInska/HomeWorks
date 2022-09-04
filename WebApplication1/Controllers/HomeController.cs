@@ -7,10 +7,6 @@ namespace WebApplication1.Controllers
     public class HomeController : Controller
     {
         public static CarPark carPark = new();
-        public IActionResult Index()
-        {
-            return View();
-        }
         public IActionResult GetCars()
         {
             return View(carPark.Cars);
