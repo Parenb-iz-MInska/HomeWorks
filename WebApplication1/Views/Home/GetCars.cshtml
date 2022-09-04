@@ -1,0 +1,18 @@
+﻿@using WebApplication1.Models
+@model IEnumerable<Car>
+ 
+<h2>Cars</h2>
+<table class="table">
+        <tr><td>Id</td><td>Name</td><td>Price</td><td>Color</td><td>Edit</td><td>Delete</td></tr>
+    @foreach (var car in Model)
+    {
+        <tr>
+            <td>@car.Id</td>
+            <td>@car.Name</td>
+            <td>@car.Price</td>
+            <td>@car.Color</td>
+            <td><a class="btn btn-primary" role="button" asp-controller="Home" asp-action="EditCar" asp-route-id="@car.Id">Edit car</a></td>
+            <td><a class="btn btn-primary" role="button" method="post" asp-controller="Home" asp-action="RemoveCarView" asp-route-id="@car.Id">Remove car</a></td>
+        </tr>
+    }
+</table>
